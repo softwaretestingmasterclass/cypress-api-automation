@@ -4,12 +4,21 @@
   "description": "Api Automation Framework",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
   },
   "author": "Ozan Ilhan",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^12.6.0"
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "cypress": "^12.6.0",
+    "eslint": "^8.35.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "typescript": "^4.9.5"
   },
   "dependencies": {
     "npx": "^10.2.2"
