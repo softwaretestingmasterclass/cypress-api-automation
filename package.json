@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test:api": "npx cypress run --spec \"cypress/e2e/\" --headless"
+
   },
   "author": "Ozan Ilhan",
   "license": "ISC",
