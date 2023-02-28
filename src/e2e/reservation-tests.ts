@@ -1,17 +1,18 @@
 import { makeHttpRequest } from '../helpers/request-helpers'
+import reservationPayload from '../fixtures/reservation-body.json'
+import tokenPayload from '../fixtures/token-data.json'
 
-let token : string
-let bookingId : string
-const reservationPayload = require('../fixtures/reservation-body.json')
-const tokenPayload = require('../fixtures/token-data.json')
+let token: string
+let bookingId: string
 
 describe('Restful booker API tests', () => {
+  const tokenBody = tokenPayload
   it('Get user token', () => {
     makeHttpRequest(
       'POST',
       '/auth',
       { 'Content-Type': 'application/json' },
-      tokenPayload
+      tokenBody
     ).then(response => {
       expect(response.status).to.equal(200)
       const body = JSON.parse(JSON.stringify(response.body))
@@ -23,26 +24,27 @@ describe('Restful booker API tests', () => {
     makeHttpRequest(
       'GET',
       '/booking',
-      { 'Content-Type': 'application/json' }
+      { 'Content-Type': 'application/json' }, ''
     ).then(response => {
       expect(response.status).to.equal(200)
     })
   })
 
   it('Create a new hotel reservation', () => {
+    const reservationBody = reservationPayload
     makeHttpRequest(
       'POST',
       '/booking',
       { 'Content-Type': 'application/json' },
-      reservationPayload
+      reservationBody
     ).then(response => {
       const body = JSON.parse(JSON.stringify(response.body))
       bookingId = body.bookingid
 
-      expect(body.booking).has.property('firstname', reservationPayload.firstname)
-      expect(body.booking).has.property('lastname', reservationPayload.lastname)
-      expect(body.booking).has.property('totalprice', reservationPayload.totalprice)
-      expect(body.booking).has.property('depositpaid', reservationPayload.depositpaid)
+      expect(body.booking).has.property('firstname', reservationBody.firstname)
+      expect(body.booking).has.property('lastname', reservationBody.lastname)
+      expect(body.booking).has.property('totalprice', reservationBody.totalprice)
+      expect(body.booking).has.property('depositpaid', reservationBody.depositpaid)
     })
   })
 
@@ -50,7 +52,7 @@ describe('Restful booker API tests', () => {
     makeHttpRequest(
       'GET',
       '/booking/' + bookingId,
-      { 'Content-Type': 'application/json' }
+      { 'Content-Type': 'application/json' }, ''
     ).then(response => {
       expect(response.status).to.equal(200)
     })
@@ -60,7 +62,7 @@ describe('Restful booker API tests', () => {
     makeHttpRequest(
       'DELETE',
       '/booking/' + bookingId,
-      { 'Content-Type': 'application/json', Cookie: 'token=' + token }
+      { 'Content-Type': 'application/json', Cookie: 'token=' + token }, ''
     ).then(response => {
       expect(response.status).to.equal(201)
     })
@@ -70,7 +72,7 @@ describe('Restful booker API tests', () => {
     makeHttpRequest(
       'GET',
       '/booking/' + bookingId,
-      { 'Content-Type': 'application/json' }
+      { 'Content-Type': 'application/json' }, ''
     ).then(response => {
       expect(response.status).to.equal(404)
     })
