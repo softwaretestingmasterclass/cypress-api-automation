@@ -1,7 +1,7 @@
 import { makeHttpRequest } from '../helpers/request-helpers'
 
-let token
-let bookingId
+let token : string
+let bookingId : string
 const reservationPayload = require('../fixtures/reservation-body.json')
 const tokenPayload = require('../fixtures/token-data.json')
 

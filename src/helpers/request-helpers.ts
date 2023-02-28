@@ -1,6 +1,6 @@
 const baseUrl = 'https://restful-booker.herokuapp.com'
 
-export function makeHttpRequest (method, path, headers, body) {
+export function makeHttpRequest (method: string, path: string, headers: any, body : any) {
   return cy.request({
     method,
     url: baseUrl + path,

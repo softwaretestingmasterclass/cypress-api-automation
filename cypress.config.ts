@@ -6,7 +6,8 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     specPattern: 'src/e2e/**/*.{js,jsx,ts,tsx,feature}',
-    supportFile: 'src/support/e2e.js'
+    supportFile: 'src/support/e2e.ts'
   },
-  video: false
+  video: false,
+  screenshots: false
 })
